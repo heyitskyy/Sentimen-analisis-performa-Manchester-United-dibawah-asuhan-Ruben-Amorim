@@ -19,7 +19,8 @@ KEYWORDS_FILE = "data/keywords.csv"
 
 # --- YouTube API ---
 # Wajib isi dengan API key dari Google Cloud Console
-YOUTUBE_API_KEY = "AIzaSyAUyJJ2XE79yFfo8XSoqJ777jXff56lOWA"
+YOUTUBE_API_KEY = "Ada Deh"
 
 YT_MAX_VIDEOS = 20          # jumlah video maksimum untuk dicari berdasarkan QUERY
 YT_MAX_COMMENTS_API = 2000 # batas komentar per video via API
+
