@@ -1,127 +1,88 @@
 # Sentimen analisis mengenai Performa Manchester United dibawah asuhan Ruben Amorim
 <img width="2056" height="1388" alt="image" src="https://github.com/user-attachments/assets/e5e7026f-e052-49f5-9d9c-3cb36d9a6be4" />
 
-# 📊 Dashboard Analisis Sentimen — Manchester United x Ruben Amorim
+Web Bisa di Akses di Web ini
+https://indokepildun.streamlit.app/
 
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)]()
-[![Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)]()
+## 📜 Ringkasan Proyek
 
-**Zaky Ahmad** — *Kecerdasan Web dan Big Data*
+Proyek ini bertujuan untuk menganalisis persepsi publik terhadap topik “Manchester United — Ruben Amorim” berdasarkan komentar di Twitter dan YouTube.
+Sistem melakukan scraping data otomatis, kemudian melakukan analisis sentimen (positif, netral, negatif), dan akhirnya menampilkan hasil dalam bentuk dashboard interaktif berbasis Streamlit.
+Dengan pendekatan ini, pengguna dapat memantau opini publik secara real-time dan mendapatkan wawasan mengenai arah sentimen terhadap topik tertentu.
 
----
+## 🚀 Teknologi yang Digunakan
 
-## 📖 Tentang Proyek
-Proyek ini menganalisis **sentimen publik** terhadap performa dan isu kepelatihan **Manchester United** di bawah **Ruben Amorim**, dengan menggabungkan data dari **Twitter (X)** dan **YouTube**.  
-Analisis dilakukan secara otomatis melalui crawling data dan pemrosesan teks menggunakan model NLP berbasis **Transformer (IndoBERT / BERT multilingual)**.
+Proyek ini dibangun menggunakan serangkaian teknologi dan library Python yang modern untuk menangani setiap tahapan pipeline data.
 
----
+- **Bahasa Pemrograman:** Python 3.11+
+- **Manajemen Lingkungan:** `venv`
+- **Pengumpulan Data (Crawling):**
+    - **twitter:** `selenium` untuk crawling twitter, `selemnium stealth` agar tidak terdetect oleh anti-bot twitter.
+    - **YouTube:** `google-api-python-client` untuk berinteraksi dengan YouTube Data API v3 secara stabil dan resmi.
+- **Preprocessing & Pembersihan Data:** `pandas` untuk manipulasi data, `Sastrawi` untuk _stopword removal_ Bahasa Indonesia.
+- **Analisis Sentimen:** `transformers` dari Hugging Face untuk menjalankan model Machine Learning canggih.
+    - **Model:** `w11wo/indonesian-roberta-base-sentiment-classifier`, sebuah model RoBERTa yang di-_fine-tune_ untuk analisis sentimen Bahasa Indonesia dengan output rating bintang (1-5 stars).
+- **Visualisasi & Dashboard:** `Streamlit` sebagai framework aplikasi web, `Plotly Express` untuk membuat grafik interaktif (hover, zoom, filter), dan `Matplotlib` + `wordcloud` untuk generasi Word Cloud.
+- **Manajemen Kredensial:** `python-dotenv` untuk mengelola API Key secara aman.
 
-## 🎯 Tujuan
-- ✅ Memahami opini publik secara objektif dan terukur  
-- ✅ Mengidentifikasi tren sentimen dari berbagai platform media  
-- ✅ Memberikan insight bagi analis, akademisi, dan stakeholder  
-- ✅ Membandingkan sentimen antara Twitter dan YouTube  
+## ⚙️ Arsitektur & Alur Kerja Pipeline
 
----
+**1. Stasiun Pengumpulan Data (Crawling)**
+   - **`src/main.py` (untuk Berita):** Menjalankan crawler `youtube_scraper.py` dan `twitter_scraper.py` secara paralel untuk mengumpulkan artikel berita.
+   - **Output:** File-file `.csv` mentah di folder `data/raw/`. Proses ini bersifat inkremental (menambahkan data baru tanpa menghapus yang lama).
 
-## 🧰 Tools
+**2. Stasiun Pembersihan (Preprocessing)**
+   - **`run_preprocessing.py`:** Script ini membaca *semua* file CSV dari `data/raw/`, menggabungkannya, menghapus duplikat, membersihkan teks (menghapus URL, mention, tanda baca), dan menstandarisasi format tanggal.
+   - **Output:** Satu file master `data/processed/master_cleaned_data.csv`.
 
-| Kategori | Teknologi |
-|-----------|------------|
-| **Deep Learning** | PyTorch, Transformers, IndoBERT |
-| **Web Scraping** | Twitter Scraper, YouTube Data API |
-| **NLP** | Sastrawi, NLTK |
-| **Data Science** | Pandas, NumPy, Scikit-learn |
-| **Visualization** | Streamlit, Plotly, Matplotlib, WordCloud |
-| **Database** | CSV |
+**3. Stasiun Analisis (Machine Learning)**
+   - **`run_analysis.py`:** Membaca data bersih dari stasiun sebelumnya. Script ini "pintar": ia hanya akan menganalisis baris data yang belum memiliki label sentimen.
+   - **Proses:** Teks bersih dikirim ke model IndoBERT (`w11wo/indonesian-roberta-base-sentiment-classifier`) untuk mendapatkan rating sentimen (1-5 stars).
+   - **Output:** File final `data/final/analysis_results.csv` yang diperkaya dengan data sentimen dan siap untuk divisualisasikan.
 
----
+**4. Stasiun Visualisasi (Dashboard)**
+   - **`dashboard.py`:** Aplikasi Streamlit yang membaca file `results.csv`.
+   - **Proses:** Mengubah rating bintang menjadi label (Positif, Netral, Negatif), kemudian membuat semua visualisasi secara dinamis dan interaktif menggunakan Plotly.
+   - **Output:** Sebuah dashboard web interaktif yang dapat diakses melalui browser.
 
-## 🧩 Deskripsi Proyek
-Aplikasi ini merupakan **Dashboard Analisis Sentimen berbasis Streamlit** yang dirancang untuk memantau dan menganalisis opini publik mengenai topik tertentu (misalnya klub sepak bola, tokoh publik, atau isu sosial).  
-Sistem akan **mengambil data secara otomatis** dari dua platform utama — **Twitter (X)** dan **YouTube** — lalu menggabungkannya ke dalam satu tampilan interaktif untuk **analisis tren sentimen**.
+## 📊 Cara Menjalankan Proyek
 
-Dashboard ini membantu pengguna, peneliti, maupun dosen untuk memahami bagaimana opini masyarakat berkembang di berbagai platform media sosial.
+1.  **Clone Repository:**
+    ```bash
+    git clone [URL_REPOSITORY_ANDA]
+    cd [NAMA_FOLDER_PROYEK]
+    ```
 
----
+2.  **Setup Lingkungan:**
+    - Buat dan aktifkan virtual environment:
+      ```bash
+      python -m venv venv
+      # Windows
+      venv\Scripts\activate
+      # macOS/Linux
+      source venv/bin/activate
+      ```
+    - Install semua dependensi:
+      ```bash
+      pip install -r requirements.txt
+      ```
 
-## ⚙️ Fitur Utama
+3.  **Konfigurasi Kredensial:**
+    - Edit file bernama `config.py` di folder utama.
+    - Isi file tersebut dengan API Key YouTube Anda:
+      ```
+      YT_API_KEY="AIzaSyXXXXXXXXXXXXXXXX"
+      ```
 
-### ✅ 1. Scraping Data Otomatis
-- Mengambil tweet dan komentar YouTube berdasarkan kata kunci tertentu  
-- Bisa mengatur jumlah maksimum tweet atau komentar per video  
-- Mendukung bahasa **Indonesia (id)** dan **Inggris (en)**  
+4.  **Jalankan Pipeline (Bertahap):**
+    - **(Wajib) Kumpulkan data:**
+      ```bash
+      python main.py
+      ```
 
-### ✅ 2. Analisis Sentimen Otomatis
-- Menggunakan model NLP untuk menentukan apakah teks bersentimen **positif**, **netral**, atau **negatif**  
-- Setiap data dilengkapi dengan **confidence score**  
-
-### ✅ 3. Integrasi Multi-Platform
-- Menggabungkan hasil analisis dari **Twitter** dan **YouTube** ke dalam satu dataset  
-- Menampilkan hasil secara terpisah untuk tiap sumber  
-
-### ✅ 4. Dashboard Interaktif
-- Dibangun dengan **Streamlit** dan **Plotly**  
-- Menampilkan grafik distribusi sentimen, timeline, dan tabel data mentah  
-- Dilengkapi fitur **WordCloud** (opsional)  
-- Auto-refresh untuk memantau data terbaru secara real-time  
-
----
-
-## 🚀 Cara Menjalankan Proyek
-
-### 1️⃣ Clone Repository:
-```bash
-git clone [URL_REPOSITORY_ANDA]
-cd [NAMA_FOLDER_PROYEK]
-2️⃣ Setup Lingkungan:
-🧩 Buat dan aktifkan virtual environment:
-bash
-Copy code
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
-💾 Install semua dependensi:
-bash
-Copy code
-pip install -r requirements.txt
-3️⃣ Konfigurasi Kredensial:
-🔑 Buat file bernama .env di folder utama.
-Isi file tersebut dengan API Key YouTube Anda:
-
-bash
-Copy code
-YT_API_KEY="AIzaSyXXXXXXXXXXXXXXXXXXXX"
-4️⃣ Jalankan Pipeline (Bertahap):
-🟥 (Wajib) Kumpulkan data YouTube:
-bash
-Copy code
-python crawl_youtube.py
-🟨 (Opsional) Tambah data berita:
-bash
-Copy code
-python src/main.py
-🟩 Proses semua data yang terkumpul:
-bash
-Copy code
-python run_preprocessing.py
-🟦 Jalankan dashboard Streamlit:
-bash
-Copy code
-streamlit run dashboard.py
-
----
-
-## 📊 Output Dashboard
-
-Dashboard menampilkan beberapa visualisasi utama:
-
-- Pie chart distribusi sentimen
-- Bar chart per sumber data
-- Timeline tren harian
-- WordCloud kata dominan
-- Tabel data mentah (dengan opsi download CSV)
+5.  **Tampilkan Dashboard:**
+    ```bash
+    streamlit run dashboard/app.py
+    ```
+    Buka URL yang ditampilkan di terminal pada browser Anda.
 
