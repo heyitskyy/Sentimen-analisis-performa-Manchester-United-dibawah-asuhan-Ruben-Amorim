@@ -70,3 +70,15 @@ Dashboard ini membantu pengguna, peneliti, maupun dosen untuk memahami bagaimana
 ---
 
 ## 🧱 Struktur Proyek
+sentiment-dashboard/
+├── app.py # File utama Streamlit
+├── dashboard.py # Dashboard visualisasi utama
+├── sentiment.py # Modul analisis sentimen
+├── config.py # Konfigurasi umum proyek
+├── twitter_scraper.py # Modul scraping data Twitter
+├── yt_api.py # Modul pengambilan komentar YouTube
+├── utils.py # Fungsi pendukung
+├── data/
+│ ├── results.csv # Hasil gabungan analisis (Twitter + YouTube)
+│ └── keywords.csv # Kata kunci pencarian
+└── requirements.txt # Daftar dependensi Python
