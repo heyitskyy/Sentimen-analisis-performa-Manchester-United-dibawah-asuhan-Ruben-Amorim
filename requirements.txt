@@ -1,0 +1,8 @@
+streamlit
+pandas
+plotly
+google-api-python-client
+selenium
+wordcloud
+matplotlib
+langdetect
