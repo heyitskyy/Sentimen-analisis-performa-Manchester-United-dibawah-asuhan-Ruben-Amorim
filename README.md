@@ -1,6 +1,5 @@
 # Sentimen analisis mengenai Performa Manchester United dibawah asuhan Ruben Amorim
 <img width="2056" height="1388" alt="image" src="https://github.com/user-attachments/assets/e5e7026f-e052-49f5-9d9c-3cb36d9a6be4" />
-
 
 ## 📜 Ringkasan Proyek
 
@@ -20,7 +19,7 @@ Proyek ini dibangun menggunakan serangkaian teknologi dan library Python yang mo
 - **Preprocessing & Pembersihan Data:** `pandas` untuk manipulasi data, `Sastrawi` untuk _stopword removal_ Bahasa Indonesia.
 - **Analisis Sentimen:** `transformers` dari Hugging Face untuk menjalankan model Machine Learning canggih.
     - **Model:** `w11wo/indonesian-roberta-base-sentiment-classifier`, sebuah model RoBERTa yang di-_fine-tune_ untuk analisis sentimen Bahasa Indonesia dengan output rating bintang (1-5 stars).
-- **Visualisasi & Dashboard:** `Streamlit` sebagai framework aplikasi web, `Plotly Express` untuk membuat grafik interaktif (hover, zoom, filter), dan `Matplotlib` + `wordcloud` untuk generasi Word Cloud.
+- **Visualisasi & Dashboard:** `Streamlit` sebagai framework aplikasi web, `Plotly` untuk membuat grafik interaktif (hover, zoom, filter), dan `Matplotlib` + `wordcloud` untuk generasi Word Cloud.
 - **Manajemen Kredensial:** `python-dotenv` untuk mengelola API Key secara aman.
 
 ## ⚙️ Arsitektur & Alur Kerja Pipeline
@@ -30,13 +29,12 @@ Proyek ini dibangun menggunakan serangkaian teknologi dan library Python yang mo
    - **Output:** File-file `.csv` mentah di folder `data/raw/`. Proses ini bersifat inkremental (menambahkan data baru tanpa menghapus yang lama).
 
 **2. Stasiun Pembersihan (Preprocessing)**
-   - **`run_preprocessing.py`:** Script ini membaca *semua* file CSV dari `data/raw/`, menggabungkannya, menghapus duplikat, membersihkan teks (menghapus URL, mention, tanda baca), dan menstandarisasi format tanggal.
-   - **Output:** Satu file master `data/processed/master_cleaned_data.csv`.
+   - **`preprocessing.py`:** Script ini membaca *semua* file CSV dari `data`, menggabungkannya, menghapus duplikat, membersihkan teks (menghapus URL, mention, tanda baca), dan menstandarisasi format tanggal.
 
 **3. Stasiun Analisis (Machine Learning)**
-   - **`run_analysis.py`:** Membaca data bersih dari stasiun sebelumnya. Script ini "pintar": ia hanya akan menganalisis baris data yang belum memiliki label sentimen.
+   - **`sentiment.py`:** Membaca data bersih dari stasiun sebelumnya. Script ini "pintar": ia hanya akan menganalisis baris data yang belum memiliki label sentimen.
    - **Proses:** Teks bersih dikirim ke model IndoBERT (`w11wo/indonesian-roberta-base-sentiment-classifier`) untuk mendapatkan rating sentimen (1-5 stars).
-   - **Output:** File final `data/final/analysis_results.csv` yang diperkaya dengan data sentimen dan siap untuk divisualisasikan.
+   - **Output:** File final `data/results.csv` yang diperkaya dengan data sentimen dan siap untuk divisualisasikan.
 
 **4. Stasiun Visualisasi (Dashboard)**
    - **`dashboard.py`:** Aplikasi Streamlit yang membaca file `results.csv`.
@@ -95,3 +93,4 @@ Berdasarkan analisis data yang telah terkumpul, beberapa temuan awal yang menari
 
 ## Kesimpulan
 Proyek ini berhasil menunjukkan bagaimana analisis sentimen berbasis NLP dan scraping multi-platform dapat memberikan pemahaman lebih dalam terhadap dampak kepemimpinan Ruben Amorim di Manchester United — baik dari sudut pandang media profesional maupun reaksi emosional fans.
+
