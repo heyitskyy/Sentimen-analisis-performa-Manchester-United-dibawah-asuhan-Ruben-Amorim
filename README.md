@@ -78,7 +78,7 @@ Proyek ini dibangun menggunakan serangkaian teknologi dan library Python yang mo
 
 5.  **Tampilkan Dashboard:**
     ```bash
-    streamlit run dashboard/app.py
+    streamlit run dashboard.py
     ```
     Buka URL yang ditampilkan di terminal pada browser Anda.
 
@@ -93,4 +93,5 @@ Berdasarkan analisis data yang telah terkumpul, beberapa temuan awal yang menari
 
 ## Kesimpulan
 Proyek ini berhasil menunjukkan bagaimana analisis sentimen berbasis NLP dan scraping multi-platform dapat memberikan pemahaman lebih dalam terhadap dampak kepemimpinan Ruben Amorim di Manchester United — baik dari sudut pandang media profesional maupun reaksi emosional fans.
+
 
