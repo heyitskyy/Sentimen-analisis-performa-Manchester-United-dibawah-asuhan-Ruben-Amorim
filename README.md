@@ -69,16 +69,37 @@ Dashboard ini membantu pengguna, peneliti, maupun dosen untuk memahami bagaimana
 
 ---
 
-## 🧱 Struktur Proyek
-sentiment-dashboard/
-├── app.py # File utama Streamlit
-├── dashboard.py # Dashboard visualisasi utama
-├── sentiment.py # Modul analisis sentimen
-├── config.py # Konfigurasi umum proyek
-├── twitter_scraper.py # Modul scraping data Twitter
-├── yt_api.py # Modul pengambilan komentar YouTube
-├── utils.py # Fungsi pendukung
-├── data/
-│ ├── results.csv # Hasil gabungan analisis (Twitter + YouTube)
-│ └── keywords.csv # Kata kunci pencarian
-└── requirements.txt # Daftar dependensi Python
+
+---
+
+## 🚀 Cara Menjalankan Proyek
+1. Clone repository ini:
+   ```bash
+   git clone https://github.com/username/sentiment-dashboard.git
+   cd sentiment-dashboard
+2. Install semua keperluan
+   pip install -r requirements.txt
+3. Jalankan prosees Crawling
+   python main.py
+4. Jalankan dashboard Streamlit
+   streamlit run dashboard.py
+
+---
+
+
+---
+
+📊 Output Dashboard
+
+Dashboard menampilkan beberapa visualisasi utama:
+
+- Pie chart distribusi sentimen
+- Bar chart per sumber data
+- Timeline tren harian
+- WordCloud kata dominan
+- Tabel data mentah (dengan opsi download CSV)
+
+---
+
+
+---
