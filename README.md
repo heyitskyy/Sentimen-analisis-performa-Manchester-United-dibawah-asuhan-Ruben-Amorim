@@ -86,3 +86,14 @@ Proyek ini dibangun menggunakan serangkaian teknologi dan library Python yang mo
     ```
     Buka URL yang ditampilkan di terminal pada browser Anda.
 
+## 💡 Hasil & Kesimpulan Awal
+
+Berdasarkan analisis data yang telah terkumpul, beberapa temuan awal yang menarik adalah:
+- **Kinerja Manchester United di bawah Ruben Amorim** menunjukkan peningkatan dalam beberapa aspek, namun masih memicu reaksi beragam dari publik.
+- **Media olahraga global** cenderung menulis dengan nada netral dan analitis, berfokus pada taktik, rotasi pemain, serta hasil pertandingan.
+- **Opini publik di YouTube** jauh lebih emosional — kombinasi antara dukungan antusias terhadap perubahan gaya bermain dan kritik terhadap inkonsistensi hasil.
+- **WordCloud** memperlihatkan kata dominan seperti “style”, “progress”, “pressing”, “structure”, serta “frustrating” yang mencerminkan narasi umum seputar performa tim.
+- **Grafik tren sentimen** memperlihatkan peningkatan sentimen positif pasca kemenangan besar, serta lonjakan negatif setelah kekalahan penting.
+
+## Kesimpulan
+Proyek ini berhasil menunjukkan bagaimana analisis sentimen berbasis NLP dan scraping multi-platform dapat memberikan pemahaman lebih dalam terhadap dampak kepemimpinan Ruben Amorim di Manchester United — baik dari sudut pandang media profesional maupun reaksi emosional fans.
