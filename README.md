@@ -69,27 +69,53 @@ Dashboard ini membantu pengguna, peneliti, maupun dosen untuk memahami bagaimana
 
 ---
 
-
----
-
 ## 🚀 Cara Menjalankan Proyek
-1. Clone repository ini:
-   ```bash
-   git clone https://github.com/username/sentiment-dashboard.git
-   cd sentiment-dashboard
-2. Install semua keperluan
-   pip install -r requirements.txt
-3. Jalankan prosees Crawling
-   python main.py
-4. Jalankan dashboard Streamlit
-   streamlit run dashboard.py
+
+### 1️⃣ Clone Repository:
+```bash
+git clone [URL_REPOSITORY_ANDA]
+cd [NAMA_FOLDER_PROYEK]
+2️⃣ Setup Lingkungan:
+🧩 Buat dan aktifkan virtual environment:
+bash
+Copy code
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+💾 Install semua dependensi:
+bash
+Copy code
+pip install -r requirements.txt
+3️⃣ Konfigurasi Kredensial:
+🔑 Buat file bernama .env di folder utama.
+Isi file tersebut dengan API Key YouTube Anda:
+
+bash
+Copy code
+YT_API_KEY="AIzaSyXXXXXXXXXXXXXXXXXXXX"
+4️⃣ Jalankan Pipeline (Bertahap):
+🟥 (Wajib) Kumpulkan data YouTube:
+bash
+Copy code
+python crawl_youtube.py
+🟨 (Opsional) Tambah data berita:
+bash
+Copy code
+python src/main.py
+🟩 Proses semua data yang terkumpul:
+bash
+Copy code
+python run_preprocessing.py
+🟦 Jalankan dashboard Streamlit:
+bash
+Copy code
+streamlit run dashboard.py
 
 ---
 
-
----
-
-📊 Output Dashboard
+## 📊 Output Dashboard
 
 Dashboard menampilkan beberapa visualisasi utama:
 
@@ -99,7 +125,3 @@ Dashboard menampilkan beberapa visualisasi utama:
 - WordCloud kata dominan
 - Tabel data mentah (dengan opsi download CSV)
 
----
-
-
----
